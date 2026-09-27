@@ -10,14 +10,21 @@ An ASI plugin for **Quantum Break — Steam, Windows x64** that removes the 30 F
 2. Copy `QuantumBreakCinematicUnlock.asi` to `QuantumBreak/dx11`, beside `QuantumBreak.exe`.
 3. Start the game through Steam.
 
-The plugin writes `QuantumBreakCinematicUnlock.log` beside itself:
+The plugin writes `QuantumBreakCinematicUnlock.log` beside itself as soon as the DLL is loaded:
 
 ```text
-[QuantumBreakCinematicUnlock] ... | ASI plugin loaded.
+[QuantumBreakCinematicUnlock] ... | ASI plugin loaded. | asi=... | exe=...
+[QuantumBreakCinematicUnlock] ... | ASI initialize entered.
 [QuantumBreakCinematicUnlock] ... | ASI plugin is active.
 ```
 
-An `ERROR` line means activation was refused and no patch was committed. To remove the mod, close the game and delete the `.asi`. The game executable is never changed.
+`asi=` and `exe=` are the files the process actually loaded. If the game folder refuses the file, the same lines are written to `%TEMP%\QuantumBreakCinematicUnlock.log`, and the first line is the Windows error from the folder beside the plugin. If neither file can be created, the game shows one dialog with both error codes.
+
+- A log beside the `.asi` means the plugin ran. The lines show how far startup got.
+- No log beside the `.asi`, but one in `%TEMP%`, means the plugin ran and could not write next to itself.
+- No log in either place, and no dialog, means the process never executed the plugin. The ASI loader does not record loads. It also stays silent when the `.asi` is outside the folders it scans, or when the file is the wrong 32/64-bit build. Put `QuantumBreakCinematicUnlock.asi` and the x64 loader DLL in `QuantumBreak/dx11`, beside `QuantumBreak.exe`. That loader also scans `scripts` and `plugins` next to itself, and does not scan the parent `QuantumBreak` folder. A dialog titled "ASI Loader" that says "Unable to load" means the file was found but Windows rejected it.
+
+An `ERROR` line from activation means it was refused and no patch was committed. To remove the mod, close the game and delete the `.asi`. The game executable is never changed.
 
 ## How it works
 

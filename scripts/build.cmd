@@ -7,7 +7,8 @@ if not defined VCToolsInstallDir (
 if not defined VCToolsInstallDir call "%QB_VS%\VC\Auxiliary\Build\vcvars64.bat"
 if errorlevel 1 exit /b 1
 if not exist build mkdir build
-cl /nologo /std:c++17 /EHsc /W4 /WX /O2 /MT /DQB_ASI /LD /Fe:build\QuantumBreakCinematicUnlock.asi /Fo:build\ src\native\candidate_module.cpp src\native\asi_bootstrap.cpp /link /IMPLIB:build\QuantumBreakCinematicUnlock.lib
+rem /EHa: an access violation during install must still run ~FrozenThreads before the log is written.
+cl /nologo /std:c++17 /EHa /W4 /WX /O2 /MT /DQB_ASI /LD /Fe:build\QuantumBreakCinematicUnlock.asi /Fo:build\ src\native\candidate_module.cpp src\native\asi_bootstrap.cpp /link /IMPLIB:build\QuantumBreakCinematicUnlock.lib
 set "QB_RESULT=%errorlevel%"
 popd
 exit /b %QB_RESULT%
