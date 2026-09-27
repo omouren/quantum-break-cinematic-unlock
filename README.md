@@ -6,7 +6,7 @@ An ASI plugin for **Quantum Break — Steam, Windows x64** that removes the 30 F
 
 ## Installation
 
-1. Install an x64 ASI loader separately. [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases) is one supported option. Do not overwrite an existing loader or graphics proxy.
+1. Install an x64 ASI loader separately. [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases) is one supported option. Do not overwrite an existing loader or graphics proxy. Quantum Break (Steam edition) is using d3d11.dll, so we can override this one by the [ASI Loader d3d11.dll](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/d3d11-x64.zip).
 2. Copy `QuantumBreakCinematicUnlock.asi` to `QuantumBreak/dx11`, beside `QuantumBreak.exe`.
 3. Start the game through Steam.
 
